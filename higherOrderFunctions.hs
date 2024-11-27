@@ -36,25 +36,20 @@ numLongChains = length (filter isLong (map chain [1 .. 100]))
   where
     isLong xs = length xs > 15
 
-
-
 sum' :: (Num a) => [a] -> a
 sum' xs = foldl (\acc x -> acc + x) 0 xs
 
 sum'' :: (Num a) => [a] -> a
 sum'' = foldl (+) 0
 
-
 map' :: (a -> b) -> [a] -> [b]
 map' f xs = foldr (\x acc -> f x : acc) [] xs
 
 elem' :: (Eq a) => a -> [a] -> Bool
-elem' y ys = foldr(\x acc -> if x==y then True else acc) False ys
-
+elem' y ys = foldr (\x acc -> if x == y then True else acc) False ys
 
 maximum' :: (Ord a) => [a] -> a
 maximum' = foldl1 max
-
 
 reverse' :: [a] -> [a]
 reverse' = foldl (\acc x -> x : acc) []
@@ -74,14 +69,12 @@ last' = foldl1 (\_ x -> x)
 and' :: [Bool] -> Bool
 and' xs = foldr (&&) True xs
 
-
 cumsum :: (Num a) => [a] -> [a]
 cumsum [] = []
 cumsum x = scanl (+) 0 x
 
 sqrtSums :: Int
-sqrtSums = length (takeWhile (<1000) (scanl1 (+) (map sqrt [1..]))) + 1
-
+sqrtSums = length (takeWhile (< 1000) (scanl1 (+) (map sqrt [1 ..]))) + 1
 
 oddSquareSum :: Integer
-oddSquareSum = sum . takeWhile (<10000) . filter odd $ map (^2) [1..]
+oddSquareSum = sum . takeWhile (< 10000) . filter odd $ map (^ 2) [1 ..]
